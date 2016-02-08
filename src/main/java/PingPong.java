@@ -8,7 +8,9 @@ public class PingPong {
   public ArrayList<Object> pingPongReplacer(Integer limit) {
     ArrayList<Object> pingPongList = new ArrayList<Object>();
     for (Integer index = 1 ; index <= limit; index ++) {
-      if (index % 5 == 0) {
+      if (index % 5 == 0 && index % 3 == 0) {
+        pingPongList.add("ping-pong");
+      } else if (index % 5 == 0) {
         pingPongList.add("pong");
       } else if (index % 3 == 0) {
         pingPongList.add("ping");
