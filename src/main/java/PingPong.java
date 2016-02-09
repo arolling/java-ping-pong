@@ -13,7 +13,7 @@ public class PingPong {
 
     get("/pingpong", (request, response) -> {
       HashMap model = new HashMap();
-      
+
       model.put("template", "templates/pingpong.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -24,7 +24,8 @@ public class PingPong {
       Integer intLimit = Integer.parseInt(stringLimit);
       ArrayList<Object> pingPongedList = new ArrayList<Object>();
       pingPongedList = PingPong.pingPongReplacer(intLimit);
-      model.put("result", pingPongedList);
+      String outputPing = PingPong.pingPongPrintout(pingPongedList);
+      model.put("result", outputPing);
       model.put("template", "templates/pingpongresult.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -44,5 +45,13 @@ public class PingPong {
       }
     }
     return pingPongList;
+  }
+
+  public static String pingPongPrintout(ArrayList<Object> pingArray) {
+    String prettyResult = "";
+    for (Integer i = 0 ; i < pingArray.size() ; i++) {
+      prettyResult += "<li>" + pingArray.get(i) + "</li>";
+    }
+    return prettyResult;
   }
 }
